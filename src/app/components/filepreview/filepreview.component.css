@@ -1,0 +1,13 @@
+.icontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .icontainer iframe {
+    width: 800px;;
+    height:500px;
+}
+  

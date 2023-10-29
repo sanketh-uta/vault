@@ -1,0 +1,68 @@
+.list-item  {
+    display: flex;
+  flex-direction: column;
+  margin-left: 30px; /* Adjust the margin as needed for spacing between folders */
+  align-items: inherit;
+  }
+/* Folder items */
+.folder {
+    display: flex;
+    align-items: initial;
+    margin: 5px;
+    cursor: pointer;
+  }
+  .folder-list {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent folders from wrapping to the next row */
+    margin-left: 50px; /* Adjust the margin as needed for spacing */
+  }
+  /* Context menu */
+ .context-menu {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+.context-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+.context-menu li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+.context-menu li:hover {
+    background-color: #f2f2f2;
+  }
+  
+.context-menu li:last-child {
+    border-top: 1px solid #ccc;
+  }
+  
+.context-menu li:last-child:hover {
+    border-top: 1px solid #ccc;
+    background-color: transparent;
+  }
+.example-button-row {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    justify-content: space-around;
+  }
+.dialog{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 40px;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.namehide {
+    overflow: hidden;
+}

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "vault-f5c42": {
+      "hosting": {
+        "vault": [
+          "vault-f5c42"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "vault-f5c42"
+  }
+}

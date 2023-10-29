@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "vault",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

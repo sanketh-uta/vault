@@ -1,0 +1,8 @@
+<mat-form-field>
+    <mat-label>enter New name</mat-label>
+    <input matInput [(ngModel)]="data.newname">
+</mat-form-field>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.newname" (click)="datasaved(data.newname)"  cdkFocusInitial>Ok</button>
+</div>
