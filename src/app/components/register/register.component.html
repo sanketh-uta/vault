@@ -1,23 +1,37 @@
+<body style="background: linear-gradient(to bottom, #3498db, #2ecc71);">
 <div class="container-fluid">
-    <div class="row mt-5">
+    <div class="row mt-0">
         <div class="col"></div>
-        <div class="col-4">
+        <div class="col-5">
+          <br><br><br><br>
             <div class="card shadow">
                 <div class="card-body">
                     <form>
                         <div class="mb-3">
-                            <label for="exampleInputName" class="form-label">Name</label>
-                          <input type="text" class="form-control" name="email" [(ngModel)]="name">
+                            <label for="exampleInputName" class="form-label">Name</label><sup><span class="required">*</span></sup>
+                          <input type="text" class="form-control" name="email" [(ngModel)]="name" required>
                         </div>
                         <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Email</label>
-                          <input type="email" class="form-control" name="email" [(ngModel)]="email">
+                          <label for="exampleInputEmail1" class="form-label">Email</label><sup><span class="required">*</span></sup>
+                          <input type="email" class="form-control" name="email" [(ngModel)]="email" required>
                         </div>
                         <div class="mb-3">
-                          <label for="exampleInputPassword1" class="form-label">Password</label>
-                          <input type="password" class="form-control" name="password" [(ngModel)]="password">
+                          <label for="exampleInputPassword1" class="form-label">Password</label><sup><span class="required">*</span></sup>
+                          <input type="password" class="form-control" name="password" [(ngModel)]="password" required>
                         </div>
-                        <button type="button" class="btn btn-info" (click)="register()">Register</button>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword2" class="form-label">Retype Password</label><sup><span class="required">*</span></sup>
+                            <input type="password" class="form-control" name="retypePassword" [(ngModel)]="retypePassword"
+                                   (ngModelChange)="onRetypePasswordChange()" (blur)="onRetypePasswordBlur()" required>
+                            <!-- Add a message for password match validation -->
+                            <div *ngIf="retypePasswordTouched && password && retypePassword && password !== retypePassword" class="text-danger">
+                              Passwords do not match.
+                            </div>
+                          </div>
+                        <div *ngIf="!isPasswordValid()" class="text-danger">
+                            Password must be at least 10 characters long, include at least 3 of the following: lowercase letters, uppercase letters, numbers (0-9), special characters (!@#$&^&*), and have no more than 2 identical characters in a row.
+                        </div>
+                        <button type="button" class="btn btn-info" (click)="register()" [disabled]="!isPasswordValid() || password !== retypePassword">Register</button>
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="/login" style="text-decoration: none;">Have an account ? <span class="text-danger">Login</span></a>
@@ -30,3 +44,4 @@
         <div class="col"></div>
     </div>
 </div>
+</body>

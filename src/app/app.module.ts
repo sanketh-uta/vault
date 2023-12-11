@@ -16,14 +16,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatTreeModule } from '@angular/material/tree';
 import {MatButtonModule} from '@angular/material/button';
 import { MatListItem, MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSortModule } from '@angular/material/sort'; 
+import { NgxEditorModule } from 'ngx-editor';
 import { SecondaryregComponent } from './components/secondaryreg/secondaryreg.component';
 import { FilepreviewComponent } from './components/filepreview/filepreview.component';
+import { LogsComponent } from './components/logs/logs.component';
+import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +38,8 @@ import { FilepreviewComponent } from './components/filepreview/filepreview.compo
     HomeComponent,
     SecondaryregComponent,
     FilepreviewComponent,
+    LogsComponent,
+    ForgetpasswordComponent,
     
   ],
   imports: [
@@ -52,7 +60,11 @@ import { FilepreviewComponent } from './components/filepreview/filepreview.compo
     MatIconModule,
     MatListModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatSortModule,
+    NgxEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

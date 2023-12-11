@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {URL} from '../constants'
 @Injectable({
   providedIn: 'root'
 })
@@ -27,18 +28,26 @@ export class AuthService {
     //   this.router.navigate(['/register'])
     // })
     //https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app/register
+    localStorage.setItem('primary_email',primary_email)
+    localStorage.setItem('name',name)
     const data = {name,primary_email,password}
-    this.http.post('http://34.70.193.214:8080/register',data).subscribe((res:any)=>{
+    this.http.post(URL+'/register',data).subscribe((res:any)=>{
       const token = res.token
       this.loginWithCustomToken(token)
-      this.router.navigate(['/home']);
+      this.router.navigate(['/secreg']); //changed secreg to test tin local
       console.log("response for login",data)
       console.log("registration",res);
+    },(error)=>{
+      alert('user already exist please login')
     })
   }
   logout(){
     this.fireauth.signOut().then(()=>{
       localStorage.removeItem('token');
+      localStorage.removeItem('primary_email')
+      localStorage.removeItem('name')
+      localStorage.removeItem('secondary_email')
+      localStorage.removeItem('photo_url')
       this.router.navigate(['/login'])
     },err=> {
       alert(err.message)

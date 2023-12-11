@@ -7,7 +7,52 @@
   }
   
   .icontainer iframe {
-    width: 800px;;
-    height:500px;
+    width: 100vh; 
+    height: 100vh; 
+    /* max-width: 800px; 
+    max-height: 500px; */
 }
-  
+mat-sidenav {
+  padding-top: 3.5rem;
+  background-color : #3f51b5;
+  @media screen and (min-width: 600px) {
+    padding-top: 4rem;
+  }
+
+  .entry{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 15rem;
+      padding-bottom:20px;
+      height: 100%;
+  }
+  /* .abcs {
+    padding:2%;
+    margin:5%;
+    width:50px;
+    height:100px;
+  } */
+}
+.mat-sidenav-container a {
+  color: white/* Your desired text color here */;
+  text-decoration: none; /* Removes the underline if you want */
+  height: 100%;
+}
+
+.mat-sidenav-container a:hover {
+  color:black;
+  /*background-color: #E2D1F9 Your desired text color on hover here */;
+}
+mat-sidenav-content{
+  padding-top: 3.5rem;
+  @media screen and (min-width: 600px) {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+  }
+}
+.homeb{
+  display: flex;
+  justify-content: flex-end;
+  font-size: 30px; 
+}

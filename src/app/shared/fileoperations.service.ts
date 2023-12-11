@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import {URL} from '../constants'
 @Injectable({
   providedIn: 'root'
 })
 export class FileoperationsService {
-  constructor(private http:HttpClient){}
+  constructor(private http:HttpClient){
+  }
   folderpath = ''
-  currentpath = 'https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app'
+  currentpath = URL
   fname = ''
   fpath = ''
   fileUrl = ''
+  versions:any[] =[]
+  otp:string
+  filepath:string // this will have the file path so can access in any component
   fetchfolderfiles(folder: any) {
     if(folder.type==='folder'){
       this.folderpath = this.currentpath + `/${folder.name}`

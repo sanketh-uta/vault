@@ -3,16 +3,20 @@ import { AuthService } from 'src/app/shared/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import {URL} from '../../constants'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
-  private serverUrl = 'http://34.70.193.214:8080';
-  primary_email: String = ''
-  password: String = ''
+export class LoginComponent implements OnInit{
+  private serverUrl = URL;
+  primary_email: string = ''
+  password: string = ''
   constructor(private auth: AuthService, private http: HttpClient,private outh:AngularFireAuth,private router: Router) { }
+  ngOnInit(): void {
+    localStorage.clear();
+  }
   // login() {
 
   //   if(this.email == '') {
@@ -30,10 +34,11 @@ export class LoginComponent{
   //   this.password = '';
 
   // }
-  login(primary_email: String, password: String) {
+  login(primary_email: string, password: string) {
+
     console.log(primary_email + " " + password);
     const loginData = { primary_email, password }
-
+    localStorage.setItem('primary_email',primary_email)
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -52,8 +57,8 @@ export class LoginComponent{
     //   }
     // );
 
-    // const token ='eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay04cjVnNkB2YWx1dC1zdmMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImV4cCI6MTY5ODM0Nzk1NywiaWF0IjoxNjk4MzQ0MzU3LCJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay04cjVnNkB2YWx1dC1zdmMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiIxYzY2ZGZmZi1hMWJhLTRiNzQtOGNmYS1iYzdjYzYxNTg4OWIifQ.dq0Gs_niq_I71jI2O3phO8EKW8ft-G3icYw-PeAy9cUuvGjwxseioKyddp-MGHmaeeqve0vCfEl7460991LMWZ1EcvknskCXqWkaJuKkQ18delwSUIqPmurcOQJTAbV5TL01B4KIUGRKmKZxxCt7WNLqyNxYgo1LqJp7NBVOcVyWZ9aw3c6c0f1xGWLjYnkmZJxhwf8NYp3n6cDEqsCdCKSIyy2NnxtiaBSWvwILSMgGSKSNP9c3-P-nGi92PLy72skxPFHbe8o2t1rPPwYxnuDoCsP9oqUAkVp7srECQ7zFBfop4hnFdoaNtlarX1egvpNP_MQjgQfQZ89QhDWtaQ'
-    //this.loginWithCustomToken(token)
+    // const token ='eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay04cjVnNkB2YWx1dC1zdmMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImV4cCI6MTY5OTUwMjQyNywiaWF0IjoxNjk5NDk4ODI3LCJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay04cjVnNkB2YWx1dC1zdmMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiI3NWEwOWM3Ny02Y2E3LTQ0NmItYjE1Mi0xNzNmN2JiOGNjZGYifQ.Lxp3V7GwXk-v-0YNN22apE6DzkzlkqKlm-RDbRQPWGOj234JJvZcLKKjcNypsHyZ-YmIPMtRkL-Qw9Hutn-Y1PsH2S-xxpxVBM6CbajQUp-d6MTpMTAglRRFushRADBgiDck8UZm_rGr6wDkGeRrbZg6hOKKNXaBcvjIu7dO8vl6pEeeTuv-IboEvXGN51jErqUFJRA_0B9Zr_kBDnKyYsdtNM9AcxMRS6aveVCiCsTu0e4ye7CnB62h46KnULnhsIApFtTvfwoxTaODM7AqerNX7IH7ZuLOxLTIA83xevL3uuRy3CvKl77JfK2OQzfMDx95ieYWOxVjoCHd7bO3IQ'
+    // this.loginWithCustomToken(token)
     this.http.post(this.serverUrl+'/login',loginData).subscribe((data:any)=>{
     //const resp = JSON.stringify();
     //console.log(resp)
@@ -61,8 +66,14 @@ export class LoginComponent{
     //console.log(res.keys)
       const token = data.token
       this.auth.loginWithCustomToken(token)
-      this.router.navigate(['/home']);
+      setTimeout(() => {
+        // Your initialization logic here
+        this.router.navigate(['/home']);
+      }, 1000);
+       //secreg
       console.log("response for login",data)
+    },(error)=>{
+      alert("Invalid email or password")
     })
   }
   
@@ -70,7 +81,7 @@ export class LoginComponent{
   //   this.outh.signInWithCustomToken(token).then((userdetails)=>{
   //     const user = userdetails.user;
   //     const idtoken = user && user.getIdToken();
-  //     localStorage.setItem('token','');
+  //     //localStorage.setItem('token','');
   //     console.log("IDTOKEN GENERATED   "+idtoken.toString());
   //   })
   // }

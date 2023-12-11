@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+    <span (click)="navtohome()">Vault</span>
+    <!-- <span class="example-spacer"></span>
+    <button mat-button color="accent" (click)="logout()">Logout</button> -->
+    <div class="profile-container" (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown()">
+        <!-- <img src="../../../assets/images/MAVID.jpg" alt="Profile Picture" class="profile-pic"> -->
+        <img [src]="photo_url" alt="Profile Picture" class="profile-pic">
+        <div *ngIf="isDropdownVisible" class="context-menu" [style.left.px]="contextMenuX" [style.top.px]="contextMenuY">
+            <ul>
+              <li (click)="editProfile()">profile</li>
+              <li (click)="showlogs()">logs</li>
+              <li (click)="terminateaccout()">terminate account</li>
+              <li (click)="logout()">logout</li>
+            </ul>
+        </div>
+    </div>
+</mat-toolbar>
+<br><br>
+<table mat-table [dataSource]="logdetails" class="mat-elevation-z8 demo-table">
+    
+    <!-- Position Column -->
+    <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef>Timestamp</th>
+        <td mat-cell *matCellDef="let element"> {{element.timestamp}} </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element"> {{element.action}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="IP">
+      <th mat-header-cell *matHeaderCellDef>IP</th>
+      <td mat-cell *matCellDef="let element"> {{element.IP}} </td>
+    </ng-container>
+    <ng-container matColumnDef="client">
+        <th mat-header-cell *matHeaderCellDef>Client</th>
+        <td mat-cell *matCellDef="let element"> {{element.client}} </td>
+    </ng-container>
+    
+  
+    <!-- Symbol Column -->
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

@@ -4,6 +4,17 @@ threadsafe: true
 handlers:
   - url: /
     static_files: dist/vault/index.html
+    secure: never
+    upload: dist/vault/index.html
+  - url: /register
+    static_files: dist/vault/index.html
+    secure: never
+    upload: dist/vault/index.html
+  - url: /login
+    static_files: dist/vault/index.html
+    upload: dist/vault/index.html
+  - url: /forgot-password
+    static_files: dist/vault/index.html
     upload: dist/vault/index.html
   - url: /
     static_dir: dist/vault

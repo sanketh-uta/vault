@@ -1,0 +1,10 @@
+<mat-form-field>
+    <mat-label>enter OTP</mat-label>
+    <input matInput [(ngModel)]="otpentered">
+</mat-form-field>
+<br>
+<strong>enter otp within 45 seconds</strong><br>
+<div mat-dialog-actions>
+  <button mat-button [disabled]="isresendButtonDisabled" (click)="resendOtp()">Resend OTP</button>
+  <button mat-button [mat-dialog-close]="data.otp" [disabled]="issubmitButtonDisabled" (click)="OtpSubmitted(data.otp)"  cdkFocusInitial>submit</button>
+</div>

@@ -1,27 +1,59 @@
+<body style="background: linear-gradient(to bottom, #3498db, #2ecc71);">
 <div class="container-fluid">
-    <div class="row mt-5">
+    <div class="row mt-0">
         <div class="col"></div>
-        <div class="col-4">
+        <div class="col-5">
+            <br><br><br>
             <div class="card shadow">
                 <div class="card-body">
                     <form>
                         <div class="mb-3">
-                            <h4 class="text-dark text-muted">User Details</h4>
+                            <h4 style="text-align: center;" class="text-dark">User Profile</h4>
                         </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">profile photo</label>
+                            <input  type="file" (change)="onFileSelected($event)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" [(ngModel)]="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Primary Email</label>
+                            <input type="name" class="form-control" name="last_name" [(ngModel)]="primary_email" readonly required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Secondary Email</label><sup><span class="required">*</span></sup>
+                            <input type="email" class="form-control" name="secondary_email" [(ngModel)]="secondary_email" required>
+                        </div>
+                        <div *ngIf="isemailsame" class="text-danger">
+                            Primary and secondary mail cant be same, please provide the different secondary mail
+                          </div>
                         <!-- <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">First Name</label>
-                            <input type="text" class="form-control" name="first_name" [(ngModel)]="first_name">
+                            <label for="exampleInputPassword1" class="form-label">Enter OTP</label>
+                            <input type="text" class="form-control" name="otp" [(ngModel)]="secondary_email">
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Last Name</label>
-                            <input type="name" class="form-control" name="last_name" [(ngModel)]="last_name">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-success" (click)="sendotp()">Send OTP</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-success" (click)="validateotp()">Validate OTP</button>
+                            </div>
                         </div> -->
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Secondary Email</label>
-                            <input type="email" class="form-control" name="secondary_email" [(ngModel)]="secondary_email">
-                        </div>
+                        <br><br>
+                        <!-- <button type="button" [disabled]="isemailvalidated" class="btn btn-info" (click)="secondaryRegister(name,last_name,secondary_email)">Submit</button> -->
+                        <button type="button" class="btn btn-info" (click)="secondaryRegister(name,primary_email,secondary_email)">Submit</button>
                         <!-- <button type="button" class="btn btn-info" (click)="login()">Login</button> -->
-                        <button type="button" class="btn btn-info" (click)="secondaryRegister(first_name,last_name,secondary_email)">Submit</button>
+                        <!-- <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-info" (click)="secondaryRegister(name,last_name,secondary_email)">Submit</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-info" (click)="resetpassword()">Reset Password</button>
+                            </div>
+                        </div> -->
+                        
                         <!-- <div class="row mt-2">
                             <a (click)="signInWithGoogle()" style="text-decoration: none;cursor: pointer;">
                                 <div class="card shadow text-center">
@@ -38,3 +70,4 @@
         <div class="col"></div>
     </div>
 </div>
+</body>

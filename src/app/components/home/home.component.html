@@ -18,9 +18,21 @@
 </div> -->
 <mat-toolbar color="primary">
     <span>Vault</span>
-    <span class="example-spacer"></span>
-    <button mat-button color="accent" (click)="logout()">Logout</button>
-  </mat-toolbar>
+    <!-- <span class="example-spacer"></span>
+    <button mat-button color="accent" (click)="logout()">Logout</button> -->
+    <div class="profile-container" (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown()">
+        <!-- <img src="../../../assets/images/MAVID.jpg" alt="Profile Picture" class="profile-pic"> -->
+        <img [src]="photo_url" alt="Profile Picture" class="profile-pic">
+        <div *ngIf="isDropdownVisible" class="context-menu" [style.left.px]="contextMenuX" [style.top.px]="contextMenuY">
+            <ul>
+              <li (click)="editProfile()">profile</li>
+              <li (click)="showlogs()">logs</li>
+              <li (click)="terminate()">terminate account</li>
+              <li (click)="logout()">logout</li>
+            </ul>
+        </div>
+    </div>
+</mat-toolbar>
 <br><br>
 <div class="button-row">
     <button style="margin-right:20px" *ngIf = "isRoot" mat-raised-button color="warn" (click)="goback()">Back</button>
@@ -61,15 +73,15 @@
 <div *ngIf="contextMenuVisible" class="context-menu" [style.left.px]="contextMenuX" [style.top.px]="contextMenuY">
     <ul>
       <li (click)="openFolder()">Open</li>
-      <li (click)="renameFolder()">Rename</li>
+      <!-- <li (click)="renameFolder()">Rename</li> -->
       <li (click)="deleteFolder()">Delete</li>
     </ul>
   </div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table">
     
     <!-- Position Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>name</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>name</th>
       <td mat-cell *matCellDef="let element">
         <button *ngIf="element.type === 'folder'" (click)="folderClicked(element)" (contextmenu)="showContextMenu($event, element)"><mat-icon *ngIf="element.type === 'folder'">folder</mat-icon></button>
       <button *ngIf="element.type === 'file'" (click)="folderClicked(element)" (contextmenu)="showContextMenu($event, element)"><mat-icon *ngIf="element.type === 'file'">insert_drive_file</mat-icon></button>
@@ -77,19 +89,19 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="modified_time">
-        <th mat-header-cell *matHeaderCellDef>modified_time</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Modified Time</th>
         <td mat-cell *matCellDef="let element"> {{element.modified_time}} </td>
       </ng-container>
   
     <!-- Name Column -->
     <ng-container matColumnDef="size">
-      <th mat-header-cell *matHeaderCellDef>size</th>
-      <td mat-cell *matCellDef="let element"> {{element.size}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Size</th>
+      <td mat-cell *matCellDef="let element"> {{element.size * 0.001}} </td>
     </ng-container>
   
     <!-- Weight Column -->
     <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef>type</th>
+      <th mat-header-cell *matHeaderCellDef>Type</th>
       <td mat-cell *matCellDef="let element"> {{element.type}} </td>
     </ng-container>
   
