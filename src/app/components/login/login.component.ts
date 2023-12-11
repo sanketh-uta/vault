@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent{
-  private serverUrl = 'https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app';
+  private serverUrl = 'http://34.70.193.214:8080';
   primary_email: String = ''
   password: String = ''
   constructor(private auth: AuthService, private http: HttpClient,private outh:AngularFireAuth,private router: Router) { }

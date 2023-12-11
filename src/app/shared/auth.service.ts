@@ -26,8 +26,9 @@ export class AuthService {
     //   alert(err.message);
     //   this.router.navigate(['/register'])
     // })
+    //https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app/register
     const data = {name,primary_email,password}
-    this.http.post('https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app/register',data).subscribe((res:any)=>{
+    this.http.post('http://34.70.193.214:8080/register',data).subscribe((res:any)=>{
       const token = res.token
       this.loginWithCustomToken(token)
       this.router.navigate(['/home']);

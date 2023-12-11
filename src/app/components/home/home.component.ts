@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   rightClickedFolder: any;
   filePath: string[] = ['Root'];
   folderPath: string = '';
-  currentPath: string = 'https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app'
+  currentPath: string = 'http://34.70.193.214:8080'
   newfolder: string = ''
   fname: string = ''
   fpath: string = ''
@@ -151,7 +151,7 @@ export class HomeComponent implements OnInit {
       }),
     };
     if(this.rightClickedFolder.type === 'file'){
-      this.http.post('https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app/file',body,httpOptions).subscribe((res:any)=>{
+      this.http.post('http://34.70.193.214:8080/file',body,httpOptions).subscribe((res:any)=>{
         this.foper.setfileurl(res.url)
         this.router.navigate(['/fileprev']);
       })
@@ -177,7 +177,7 @@ export class HomeComponent implements OnInit {
         'Content-Type': 'application/json'
       })
     };
-    this.http.post('https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app/list', raw,httpOptions).subscribe((res) => {
+    this.http.post('http://34.70.193.214:8080/list', raw,httpOptions).subscribe((res) => {
     console.log("file list", res)
     this.folders = res
     this.dataSource = this.folders;
@@ -228,7 +228,7 @@ export class HomeComponent implements OnInit {
       body: payload
     };
 
-    return this.http.delete('https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app/file', httpOptions).subscribe((res)=>{
+    return this.http.delete('http://34.70.193.214:8080/file', httpOptions).subscribe((res)=>{
     this.contextMenuVisible = false  
     this.showfiles()
     });
@@ -274,7 +274,7 @@ export class HomeComponent implements OnInit {
       }),
     };
     
-    this.http.post('https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app/folder',body,httpOptions).subscribe((res)=>{
+    this.http.post('http://34.70.193.214:8080/folder',body,httpOptions).subscribe((res)=>{
       this.showfiles()
     })
   }
@@ -301,7 +301,7 @@ export class HomeComponent implements OnInit {
         // 'Content-Type': 'multipart/form-data'
       })
     };
-    this.http.post('https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app/file/upload',formobj,httpOptions).subscribe((res)=>{
+    this.http.post('http://34.70.193.214:8080/file/upload',formobj,httpOptions).subscribe((res)=>{
     this.showfiles()
     console.log("file upload ",res)
     })
@@ -317,7 +317,7 @@ export class HomeComponent implements OnInit {
         'Content-Type': 'application/json'
       })
     };
-    this.http.post('https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app/list', raw,httpOptions).subscribe((res) => {
+    this.http.post('http://34.70.193.214:8080/list', raw,httpOptions).subscribe((res) => {
     console.log("file list", res)
     this.folders = res
     this.dataSource = this.folders;
@@ -339,7 +339,7 @@ export class HomeComponent implements OnInit {
         'Content-Type': 'application/json'
       })
     };
-    this.http.post('https://68cb-2603-8080-8f0-18a0-e4f7-8d90-2343-fcaa.ngrok-free.app/list', raw,httpOptions).subscribe((res) => {
+    this.http.post('http://34.70.193.214:8080/list', raw,httpOptions).subscribe((res) => {
     console.log("file list", res)
     this.folders = res
     this.dataSource = this.folders;
